@@ -32,7 +32,7 @@ namespace TestProj2Empty3._1
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Hello World!");
+                    await context.Response.WriteAsync($"Running on - {System.Diagnostics.Process.GetCurrentProcess().ProcessName}");
                 });
             });
         }
