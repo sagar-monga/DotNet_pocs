@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3jc+DuAGqSkXNEDvnKaVcOcGkhhxtDLXLUMLMWbOyLQzE3e776TraanT/3XwwnwKXAKt3pMl1bX5Q0g5L/Pkqw==",
+  "dgSpecHash": "U8ET09GCiHJrlsFIIB4N+Wbf9B5eDCXScFdkofozAzYzhYQiiGE8irPZQvixzYmVXIhG/9VY2HAVFodgWEP5Ww==",
   "success": true,
-  "projectFilePath": "D:\\BitbucketProjects\\service\\pocs\\BE_pocs\\TestProj2Empty3.1\\TestProj2Empty3.1\\TestProj2Empty3.1.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\sagar.monga\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
-  ],
+  "projectFilePath": "D:\\Work\\Backend\\BE_pocs\\TestProj2Empty3.1\\TestProj2Empty3.1\\TestProj2Empty3.1.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
