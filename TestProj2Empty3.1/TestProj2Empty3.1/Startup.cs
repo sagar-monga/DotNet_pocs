@@ -56,7 +56,7 @@ namespace TestProj2Empty3._1
                     await context.Response.WriteAsync($"Using env variable - {_configuration["CustomKey"]}");
                 });
                 // To serve static files, they have to be in wwwrroot folder, hence creating one.
-                // But serving them is not handled here so any path we got, we will just see the text
+                // But serving them is not handled here
             });
         }
     }
