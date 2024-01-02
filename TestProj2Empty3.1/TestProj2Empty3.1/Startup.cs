@@ -36,20 +36,27 @@ namespace TestProj2Empty3._1
         {
             if (env.IsDevelopment())
             {
+                // Request pipeline using the extension method of the IapplicationBuilder interface
+
+                // middleware pipeline begins here
+                // 1
                 app.UseDeveloperExceptionPage();
             }
-
+            // 2
             app.UseRouting();
-
+            // 3
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
                 {
+                    // Middleware which responds to EVERY Request!
                     await context.Response.WriteAsync($"Running on - {System.Diagnostics.Process.GetCurrentProcess().ProcessName}\n");
                     //! No output as there is no key found with name "Custom"
                     // await context.Response.WriteAsync($"Using env variable - {_configuration["Custom"]}");
                     await context.Response.WriteAsync($"Using env variable - {_configuration["CustomKey"]}");
                 });
+                // To serve static files, they have to be in wwwrroot folder, hence creating one.
+                // But serving them is not handled here so any path we got, we will just see the text
             });
         }
     }
