@@ -44,9 +44,15 @@ namespace TestProj2Empty3._1
                 app.UseDeveloperExceptionPage();
             }
 
+            //  Using a seperate file other than the default file as home page
+            DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
+            defaultFilesOptions.DefaultFileNames.Clear();
+            defaultFilesOptions.DefaultFileNames.Add("home.html");
+            app.UseDefaultFiles(defaultFilesOptions);
+
             //* Order for following 2 middlewares is important
             // Middleware for using default.html/index.html as home page
-            app.UseDefaultFiles();
+            // app.UseDefaultFiles();
 
             // Middleware for static files - include this first
             app.UseStaticFiles();
