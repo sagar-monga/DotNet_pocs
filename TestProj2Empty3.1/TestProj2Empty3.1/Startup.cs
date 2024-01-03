@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,11 +33,12 @@ namespace TestProj2Empty3._1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        //* Logger outputs to debug console. SEE OUTPUT TO CHECK HOW REQUEST PROCESSING PIPELINE WORKS
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
+            // Request pipeline using the extension method of the IapplicationBuilder interface
             if (env.IsDevelopment())
             {
-                // Request pipeline using the extension method of the IapplicationBuilder interface
 
                 // middleware pipeline begins here
                 // 1
@@ -44,7 +46,26 @@ namespace TestProj2Empty3._1
             }
             // 2
             app.UseRouting();
-            // 3
+
+            // 3a
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation("MW1: Incoming Request");
+                await context.Response.WriteAsync($"From MW1\n");
+                await next(); // Calls the next middleware, if this is commented, this becomes a TERMINAL middleware, ie not passes to next
+                logger.LogInformation("MW1: Outgoing Response");
+            });
+
+            // 3b
+            app.Use(async (context, next) =>
+            {
+                logger.LogInformation("MW2: Incoming Request");
+                await context.Response.WriteAsync($"From MW2\n");
+                await next(); // Calls the next middleware
+                logger.LogInformation("MW2: Outgoing Response");
+            });
+
+            // 4
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
@@ -54,6 +75,8 @@ namespace TestProj2Empty3._1
                     //! No output as there is no key found with name "Custom"
                     // await context.Response.WriteAsync($"Using env variable - {_configuration["Custom"]}");
                     await context.Response.WriteAsync($"Using env variable - {_configuration["CustomKey"]}");
+
+                    logger.LogInformation("MW3: Request handled and response produced");
                 });
                 // To serve static files, they have to be in wwwrroot folder, hence creating one.
                 // But serving them is not handled here
