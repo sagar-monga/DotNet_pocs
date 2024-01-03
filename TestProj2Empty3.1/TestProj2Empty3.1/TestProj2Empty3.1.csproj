@@ -5,4 +5,8 @@
     <RootNamespace>TestProj2Empty3._1</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

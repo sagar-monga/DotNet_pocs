@@ -39,11 +39,14 @@ namespace TestProj2Empty3._1
             // Request pipeline using the extension method of the IapplicationBuilder interface
             if (env.IsDevelopment())
             {
-
                 // middleware pipeline begins here
                 // 1
                 app.UseDeveloperExceptionPage();
             }
+
+            // Middleware for static files - include this first
+            app.UseStaticFiles();
+
             // 2
             app.UseRouting();
 
