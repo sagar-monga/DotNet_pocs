@@ -48,14 +48,22 @@ namespace TestProj2Empty3._1
             DefaultFilesOptions defaultFilesOptions = new DefaultFilesOptions();
             defaultFilesOptions.DefaultFileNames.Clear();
             defaultFilesOptions.DefaultFileNames.Add("home.html");
-            app.UseDefaultFiles(defaultFilesOptions);
+            // app.UseDefaultFiles(defaultFilesOptions);
 
             //* Order for following 2 middlewares is important
             // Middleware for using default.html/index.html as home page
             // app.UseDefaultFiles();
 
             // Middleware for static files - include this first
-            app.UseStaticFiles();
+            // app.UseStaticFiles();
+
+            // Instead of using the 2 middleware above, we can use them together as
+            // Optional, setting path to a different page
+            FileServerOptions fileServerOptions = new FileServerOptions();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+            fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("home.html");
+
+            app.UseFileServer();
 
             // 2
             app.UseRouting();
