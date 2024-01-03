@@ -44,6 +44,10 @@ namespace TestProj2Empty3._1
                 app.UseDeveloperExceptionPage();
             }
 
+            //* Order for following 2 middlewares is important
+            // Middleware for using default.html/index.html as home page
+            app.UseDefaultFiles();
+
             // Middleware for static files - include this first
             app.UseStaticFiles();
 
