@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 
-namespace TestProj2Empty3._1
+namespace TestProj2Empty3._1.Controllers
 {
     public class HomeController : Controller
     {
