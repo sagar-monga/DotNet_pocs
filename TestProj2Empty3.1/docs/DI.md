@@ -29,4 +29,5 @@ addSingleton, addTransient or addScoped <Interface, Class> to create a binding s
 
 AddSingleton creates an instance when called for the first time, and then uses this created instance every time it is called throughout the application.
 AddTransient creates a new instance each time it is requested.
-AddScoped creates a new instance between scopes but uses the same instance in the same scope.
+AddScoped creates a new instance between 
+scopes but uses the same instance in the same scope.
