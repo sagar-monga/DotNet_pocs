@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "restore": {
+    "d:\\BitbucketProjects\\service\\pocs\\BE_pocs\\01WebApi\\01WebApi\\01WebApi.csproj": {}
+  },
+  "projects": {
+    "d:\\BitbucketProjects\\service\\pocs\\BE_pocs\\01WebApi\\01WebApi\\01WebApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\BitbucketProjects\\service\\pocs\\BE_pocs\\01WebApi\\01WebApi\\01WebApi.csproj",
+        "projectName": "01WebApi",
+        "projectPath": "d:\\BitbucketProjects\\service\\pocs\\BE_pocs\\01WebApi\\01WebApi\\01WebApi.csproj",
+        "packagesPath": "C:\\Users\\sagar.monga\\.nuget\\packages\\",
+        "outputPath": "d:\\BitbucketProjects\\service\\pocs\\BE_pocs\\01WebApi\\01WebApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\sagar.monga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://gitlab.com/api/v4/projects/45810272/packages/nuget/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
