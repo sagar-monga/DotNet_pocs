@@ -32,7 +32,8 @@ namespace _01WebApi.Controllers
         // [HttpGet("{id}")] // Alternate notation, infers type from function parameter
         public IActionResult Get(int id)
         {
-            return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id));
+            // return new JsonResult(EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id)); // returns single entity, if not found then null
+            return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id)); // returns array, if no result then []
         }
 
     }
