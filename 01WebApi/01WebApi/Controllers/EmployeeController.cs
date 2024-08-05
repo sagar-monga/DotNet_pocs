@@ -25,15 +25,28 @@ namespace _01WebApi.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
+            // * Can be done but cumbersome
+            // var temp = new JsonResult(EmployeeDataStore.Current.Employees);
+            // temp.StatusCode = 200;
+
             return new JsonResult(EmployeeDataStore.Current.Employees);
         }
 
         [HttpGet("{id:int}")] // Make sure no spaces
         // [HttpGet("{id}")] // Alternate notation, infers type from function parameter
-        public IActionResult Get(int id)
+        public ActionResult<EmployeeDto> Get(int id)
         {
+            var employee = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
+
             // return new JsonResult(EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id)); // returns single entity, if not found then null
-            return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id)); // returns array, if no result then []
+            // return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id)); // returns array, if no result then []
         }
 
     }
