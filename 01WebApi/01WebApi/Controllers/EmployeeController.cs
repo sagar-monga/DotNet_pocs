@@ -11,7 +11,7 @@ namespace _01WebApi.Controllers
     // [Route("[controller]")]
     // This sets the base route to https://localhost:7033/Employee
 
-    [Route("myRoute/api")] //* attribute for routing, matches action to controller
+    [Route("api/employees")] //* attribute for routing, matches action to controller
     // public class EmployeeController : Controller //* Controller contains additional functionality like working with Views
     public class EmployeeController : ControllerBase //* ControllerBase contains basic functionality the Controller needs
     {
@@ -20,7 +20,7 @@ namespace _01WebApi.Controllers
 
         }
 
-        [HttpGet("employees")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             return new JsonResult(new List<object> {
