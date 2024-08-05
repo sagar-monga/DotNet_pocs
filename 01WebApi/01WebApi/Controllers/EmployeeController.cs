@@ -11,7 +11,8 @@ namespace _01WebApi.Controllers
     // [Route("[controller]")]
     // This sets the base route to https://localhost:7033/Employee
 
-    [Route("api/[controller]")] //* attribute for routing, matches action to controller
+    // [Route("api/[controller]")] vs [Route("api/employee")] - The first might change during refactoring of controller thus not recommended
+    [Route("api/employee")] //* attribute for routing, matches action to controller
     // public class EmployeeController : Controller //* Controller contains additional functionality like working with Views
     public class EmployeeController : ControllerBase //* ControllerBase contains basic functionality the Controller needs
     {
