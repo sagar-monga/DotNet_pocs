@@ -1,4 +1,5 @@
 ﻿
+using _01WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _01WebApi.Controllers
@@ -24,17 +25,13 @@ namespace _01WebApi.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return new JsonResult(new List<object> {
-                new {id=1, name="Adam"},
-                new {id=2, name="Arthur"},
-                new {id=3, name="Daisy"},
-            });
+            return new JsonResult(EmployeeDataStore.Current.Employees);
         }
 
         [HttpGet("{id:int}")] // Make sure no spaces
         public IActionResult Get(int id)
         {
-            return Ok(new { uuid = id });
+            return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id));
         }
 
     }
