@@ -29,6 +29,7 @@ namespace _01WebApi.Controllers
         }
 
         [HttpGet("{id:int}")] // Make sure no spaces
+        // [HttpGet("{id}")] // Alternate notation, infers type from function parameter
         public IActionResult Get(int id)
         {
             return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id));
