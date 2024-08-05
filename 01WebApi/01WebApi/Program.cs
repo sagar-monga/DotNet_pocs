@@ -24,4 +24,17 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+/* Alternate/older way of registering controllers (MapControllers combines this into one)
+    
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+*/
+
 app.Run();
