@@ -1,5 +1,6 @@
 ﻿
 using _01WebApi.Models;
+using _01WebApi.Models.RequestModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _01WebApi.Controllers
@@ -47,6 +48,38 @@ namespace _01WebApi.Controllers
 
             // return new JsonResult(EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id)); // returns single entity, if not found then null
             // return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id)); // returns array, if no result then []
+        }
+
+        [HttpPost]
+        public ActionResult Add([FromBody] EmployeeRequestModelDto employeeRequestModel)
+        {
+            var count = EmployeeDataStore.Current.Employees.Count();
+
+            EmployeeDto newEmployee = new EmployeeDto()
+            {
+                Id = count + 1,
+                FirstName = employeeRequestModel.FirstName,
+                LastName = employeeRequestModel.LastName,
+                Salary = employeeRequestModel.Salary,
+                Department = employeeRequestModel.Department,
+                Position = employeeRequestModel.Position,
+                HireDate = employeeRequestModel.HireDate,
+                DateOfBirth = employeeRequestModel.DateOfBirth,
+            };
+
+            try
+            {
+                // if(count == 200) {
+                //     throw new Exception("Max Count reached");
+                // }
+                EmployeeDataStore.Current.Employees.Add(newEmployee);
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception {0} occurred", ex);
+                return NotFound();
+            }
         }
 
     }
