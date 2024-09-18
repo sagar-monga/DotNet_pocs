@@ -51,10 +51,12 @@ namespace _01WebApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add([FromBody] EmployeeRequestModelDto employeeRequestModel)
+        // Works even if we omit [FromBody] as using APIController attribute.
+        public ActionResult Add(EmployeeRequestModelDto employeeRequestModel)
         {
             var count = EmployeeDataStore.Current.Employees.Count();
 
+            // Works but this mapping is cumbersome and can lead to errors
             EmployeeDto newEmployee = new EmployeeDto()
             {
                 Id = count + 1,
@@ -69,16 +71,17 @@ namespace _01WebApi.Controllers
 
             try
             {
-                // if(count == 200) {
-                //     throw new Exception("Max Count reached");
-                // }
+                if (count == 200)
+                {
+                    throw new Exception("Max Count reached");
+                }
                 EmployeeDataStore.Current.Employees.Add(newEmployee);
                 return Ok(true);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Exception {0} occurred", ex);
-                return NotFound();
+                return Ok(false);
             }
         }
 
