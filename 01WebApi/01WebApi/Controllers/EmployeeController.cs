@@ -33,7 +33,7 @@ namespace _01WebApi.Controllers
             return new JsonResult(EmployeeDataStore.Current.Employees);
         }
 
-        [HttpGet("{id:int}")] // Make sure no spaces
+        [HttpGet("{id:int}", Name = "GetEmployee")] // Make sure no spaces
         // [HttpGet("{id}")] // Alternate notation, infers type from function parameter
         public ActionResult<EmployeeDto> Get(int id)
         {
@@ -71,16 +71,21 @@ namespace _01WebApi.Controllers
 
             try
             {
-                if (count == 200)
+                if (count == 210)
                 {
                     throw new Exception("Max Count reached");
                 }
                 EmployeeDataStore.Current.Employees.Add(newEmployee);
-                return Ok(true);
+                return CreatedAtRoute("GetEmployee",
+                new 
+                {
+                    id = newEmployee.Id,
+                }, newEmployee);  // newEmployee ends up in the response.
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Exception {0} occurred", ex);
+                // TODO: Check if something better can be returned.
                 return Ok(false);
             }
         }
