@@ -1,6 +1,7 @@
 ﻿
 using _01WebApi.Models;
 using _01WebApi.Models.RequestModels;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _01WebApi.Controllers
@@ -90,10 +91,10 @@ namespace _01WebApi.Controllers
             }
         }
 
-        [HttpPut("{employeeId}")]
-        public ActionResult FullUpdate(int employeeId, EmployeeDtoForUpdate newEmployeeDetails)
+        [HttpPut("{id}")]
+        public ActionResult FullUpdate(int id, EmployeeDtoForUpdate newEmployeeDetails)
         {
-            var employeeFromStore = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == employeeId);
+            var employeeFromStore = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
 
             if (employeeFromStore == null)
             {
@@ -112,6 +113,40 @@ namespace _01WebApi.Controllers
             //* Can return NoContent or the updated employee details as required by application
             return NoContent();
             // return Ok(employeeFromStore);
+        }
+
+        [HttpPatch("{id}")]
+        public ActionResult PartialUpdate(int id, JsonPatchDocument<EmployeeDtoForUpdate> patchDocument)
+        {
+            var employeeFromStore = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
+
+            if (employeeFromStore == null)
+            {
+                return NotFound();
+            }
+
+            var employeeToPatch = new EmployeeDtoForUpdate()
+            {
+                FirstName = employeeFromStore.FirstName,
+                LastName = employeeFromStore.LastName,
+                Salary = employeeFromStore.Salary,
+                Department = employeeFromStore.Department,
+                Position = employeeFromStore.Position,
+                LastWorkingDate = employeeFromStore.LastWorkingDate,
+                HireDate = employeeFromStore.HireDate,
+                DateOfBirth = employeeFromStore.DateOfBirth,
+            };
+
+
+
+            patchDocument.ApplyTo(employeeToPatch, ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(employeeToPatch);
         }
     }
 
