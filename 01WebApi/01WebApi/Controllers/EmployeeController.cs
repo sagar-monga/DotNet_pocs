@@ -148,6 +148,21 @@ namespace _01WebApi.Controllers
 
             return Ok(employeeToPatch);
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var employeeFromStore = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
+
+            if (employeeFromStore == null)
+            {
+                return NotFound();
+            }
+
+            EmployeeDataStore.Current.Employees.Remove(employeeFromStore);
+
+            return NoContent();
+        }
     }
 
 }
