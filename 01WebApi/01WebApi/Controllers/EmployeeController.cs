@@ -112,7 +112,6 @@ namespace _01WebApi.Controllers
             //* Can return NoContent or the updated employee details as required by application
             return NoContent();
             // return Ok(employeeFromStore);
-
         }
     }
 
