@@ -77,7 +77,7 @@ namespace _01WebApi.Controllers
                 }
                 EmployeeDataStore.Current.Employees.Add(newEmployee);
                 return CreatedAtRoute("GetEmployee",
-                new 
+                new
                 {
                     id = newEmployee.Id,
                 }, newEmployee);  // newEmployee ends up in the response.
@@ -90,6 +90,30 @@ namespace _01WebApi.Controllers
             }
         }
 
+        [HttpPut("{employeeId}")]
+        public ActionResult FullUpdate(int employeeId, EmployeeDtoForUpdate newEmployeeDetails)
+        {
+            var employeeFromStore = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == employeeId);
+
+            if (employeeFromStore == null)
+            {
+                return NotFound("Employee not found");
+            }
+
+            employeeFromStore.FirstName = newEmployeeDetails.FirstName;
+            employeeFromStore.LastName = newEmployeeDetails.LastName;
+            employeeFromStore.Salary = newEmployeeDetails.Salary;
+            employeeFromStore.Department = newEmployeeDetails.Department;
+            employeeFromStore.Position = newEmployeeDetails.Position;
+            employeeFromStore.LastWorkingDate = newEmployeeDetails.LastWorkingDate;
+            employeeFromStore.HireDate = newEmployeeDetails.HireDate;
+            employeeFromStore.DateOfBirth = newEmployeeDetails.DateOfBirth;
+
+            //* Can return NoContent or the updated employee details as required by application
+            return NoContent();
+            // return Ok(employeeFromStore);
+
+        }
     }
 
 }
