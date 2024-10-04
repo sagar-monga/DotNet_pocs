@@ -45,6 +45,7 @@ namespace _01WebApi.Controllers
 
             if (employee == null)
             {
+                _logger.LogInformation($"Employee with id {id} not found");
                 return NotFound();
             }
 
