@@ -1,6 +1,7 @@
 ﻿
 using _01WebApi.Models;
 using _01WebApi.Models.RequestModels;
+using _01WebApi.Services;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,8 +44,11 @@ namespace _01WebApi.Controllers
         {
             var employee = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
 
+            var greetingService = HttpContext.RequestServices.GetService<IGreetingService>();
+
             if (employee == null)
             {
+                greetingService?.Greet();
                 _logger.LogInformation($"Employee with id {id} not found");
                 return NotFound();
             }
