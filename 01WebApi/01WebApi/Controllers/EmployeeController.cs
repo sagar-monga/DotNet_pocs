@@ -19,9 +19,12 @@ namespace _01WebApi.Controllers
     // public class EmployeeController : Controller //* Controller contains additional functionality like working with Views
     public class EmployeeController : ControllerBase //* ControllerBase contains basic functionality the Controller needs
     {
-        public EmployeeController()
-        {
 
+        private ILogger<EmployeeController> _logger;
+
+        public EmployeeController(ILogger<EmployeeController> logger)
+        {
+            _logger = logger;
         }
 
         [HttpGet]
