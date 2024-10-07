@@ -23,20 +23,22 @@ namespace _01WebApi.Controllers
     {
 
         private ILogger<EmployeeController> _logger;
+        private readonly EmployeeDataStore _employeeDataStore;
 
-        public EmployeeController(ILogger<EmployeeController> logger)
+        public EmployeeController(ILogger<EmployeeController> logger, EmployeeDataStore employeeDataStore)
         {
             _logger = logger;
+            _employeeDataStore = employeeDataStore;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
             // * Can be done but cumbersome
-            // var temp = new JsonResult(EmployeeDataStore.Current.Employees);
+            // var temp = new JsonResult(_employeeDataStore.Employees);
             // temp.StatusCode = 200;
 
-            return new JsonResult(EmployeeDataStore.Current.Employees);
+            return new JsonResult(_employeeDataStore.Employees);
         }
 
         [HttpGet("{id:int}", Name = "GetEmployee")] // Make sure no spaces
@@ -46,7 +48,7 @@ namespace _01WebApi.Controllers
             try
             {
                 // throw new Exception("Sample Exception");
-                var employee = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
+                var employee = _employeeDataStore.Employees.FirstOrDefault(e => e.Id == id);
 
                 var greetingService = HttpContext.RequestServices.GetService<IGreetingService>();
 
@@ -59,8 +61,8 @@ namespace _01WebApi.Controllers
 
                 return Ok(employee);
 
-                // return new JsonResult(EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id)); // returns single entity, if not found then null
-                // return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id)); // returns array, if no result then []
+                // return new JsonResult(_employeeDataStore.Employees.FirstOrDefault(e => e.Id == id)); // returns single entity, if not found then null
+                // return new JsonResult(_employeeDataStore.Employees.Where(e => e.Id == id)); // returns array, if no result then []
             }
             catch (Exception ex)
             {
@@ -73,7 +75,7 @@ namespace _01WebApi.Controllers
         // Works even if we omit [FromBody] as using APIController attribute.
         public ActionResult Add(EmployeeRequestModelDto employeeRequestModel)
         {
-            var count = EmployeeDataStore.Current.Employees.Count();
+            var count = _employeeDataStore.Employees.Count();
 
             // Works but this mapping is cumbersome and can lead to errors
             EmployeeDto newEmployee = new EmployeeDto()
@@ -94,7 +96,7 @@ namespace _01WebApi.Controllers
                 {
                     throw new Exception("Max Count reached");
                 }
-                EmployeeDataStore.Current.Employees.Add(newEmployee);
+                _employeeDataStore.Employees.Add(newEmployee);
                 return CreatedAtRoute("GetEmployee",
                 new
                 {
@@ -112,7 +114,7 @@ namespace _01WebApi.Controllers
         [HttpPut("{id}")]
         public ActionResult FullUpdate(int id, EmployeeDtoForUpdate newEmployeeDetails)
         {
-            var employeeFromStore = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
+            var employeeFromStore = _employeeDataStore.Employees.FirstOrDefault(e => e.Id == id);
 
             if (employeeFromStore == null)
             {
@@ -136,7 +138,7 @@ namespace _01WebApi.Controllers
         [HttpPatch("{id}")]
         public ActionResult PartialUpdate(int id, JsonPatchDocument<EmployeeDtoForUpdate> patchDocument)
         {
-            var employeeFromStore = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
+            var employeeFromStore = _employeeDataStore.Employees.FirstOrDefault(e => e.Id == id);
 
             if (employeeFromStore == null)
             {
@@ -170,14 +172,14 @@ namespace _01WebApi.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var employeeFromStore = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
+            var employeeFromStore = _employeeDataStore.Employees.FirstOrDefault(e => e.Id == id);
 
             if (employeeFromStore == null)
             {
                 return NotFound();
             }
 
-            EmployeeDataStore.Current.Employees.Remove(employeeFromStore);
+            _employeeDataStore.Employees.Remove(employeeFromStore);
 
             return NoContent();
         }

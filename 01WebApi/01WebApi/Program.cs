@@ -1,3 +1,4 @@
+using _01WebApi;
 using _01WebApi.Interfaces;
 using _01WebApi.Services;
 
@@ -14,6 +15,7 @@ builder.Services.AddControllers(options =>
 .AddXmlDataContractSerializerFormatters(); //* Registers controllers
 
 builder.Services.AddSingleton<IGreetingService, GreetingService>();
+builder.Services.AddSingleton<EmployeeDataStore>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer(); //* Adds Swagger

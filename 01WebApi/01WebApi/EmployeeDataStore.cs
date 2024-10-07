@@ -7,7 +7,7 @@ public class EmployeeDataStore
 {
     public List<EmployeeDto> Employees { get; set; }
 
-    public static EmployeeDataStore Current { get; } = new EmployeeDataStore();
+    // public static EmployeeDataStore Current { get; } = new EmployeeDataStore();
 
     public EmployeeDataStore()
     {
