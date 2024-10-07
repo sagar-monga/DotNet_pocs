@@ -43,21 +43,30 @@ namespace _01WebApi.Controllers
         // [HttpGet("{id}")] // Alternate notation, infers type from function parameter
         public ActionResult<EmployeeDto> Get(int id)
         {
-            var employee = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
-
-            var greetingService = HttpContext.RequestServices.GetService<IGreetingService>();
-
-            if (employee == null)
+            try
             {
-                greetingService?.Greet();
-                _logger.LogWarning($"Employee with id {id} not found");
-                return NotFound();
+                // throw new Exception("Sample Exception");
+                var employee = EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id);
+
+                var greetingService = HttpContext.RequestServices.GetService<IGreetingService>();
+
+                if (employee == null)
+                {
+                    greetingService?.Greet();
+                    _logger.LogWarning($"Employee with id {id} not found");
+                    return NotFound();
+                }
+
+                return Ok(employee);
+
+                // return new JsonResult(EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id)); // returns single entity, if not found then null
+                // return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id)); // returns array, if no result then []
             }
-
-            return Ok(employee);
-
-            // return new JsonResult(EmployeeDataStore.Current.Employees.FirstOrDefault(e => e.Id == id)); // returns single entity, if not found then null
-            // return new JsonResult(EmployeeDataStore.Current.Employees.Where(e => e.Id == id)); // returns array, if no result then []
+            catch (Exception ex)
+            {
+                _logger.LogCritical($"Error while getting employee with id ${id}: ", ex);
+                return StatusCode(500, "An exception occured");
+            }
         }
 
         [HttpPost]
