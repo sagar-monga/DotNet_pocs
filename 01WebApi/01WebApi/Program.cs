@@ -1,3 +1,4 @@
+using _01WebApi.Interfaces;
 using _01WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);

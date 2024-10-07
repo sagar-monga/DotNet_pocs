@@ -1,4 +1,5 @@
 ﻿
+using _01WebApi.Interfaces;
 using _01WebApi.Models;
 using _01WebApi.Models.RequestModels;
 using _01WebApi.Services;
@@ -49,7 +50,7 @@ namespace _01WebApi.Controllers
             if (employee == null)
             {
                 greetingService?.Greet();
-                _logger.LogInformation($"Employee with id {id} not found");
+                _logger.LogWarning($"Employee with id {id} not found");
                 return NotFound();
             }
 

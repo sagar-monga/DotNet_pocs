@@ -1,16 +1,12 @@
 using System;
+using _01WebApi.Interfaces;
 
 namespace _01WebApi.Services;
 
-public interface IGreetingService
-{
-    string Greet();
-}
-
 public class GreetingService : IGreetingService
 {
-    public string Greet()
+    public void Greet()
     {
-        return "Hello";
+        Console.WriteLine("Hello");
     }
 }
