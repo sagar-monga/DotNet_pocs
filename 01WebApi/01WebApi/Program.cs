@@ -25,6 +25,11 @@ var app = builder.Build(); //* Builds the App
 
 // Configure the HTTP request pipeline. -- important
 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/error");
+}
+
 // * Middlewaers added here
 if (app.Environment.IsDevelopment())
 {

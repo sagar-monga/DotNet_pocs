@@ -45,6 +45,8 @@ namespace _01WebApi.Controllers
         // [HttpGet("{id}")] // Alternate notation, infers type from function parameter
         public ActionResult<EmployeeDto> Get(int id)
         {
+            //* To simulatre global exception handler
+            // throw new Exception("Sample Exception");
             try
             {
                 // throw new Exception("Sample Exception");
