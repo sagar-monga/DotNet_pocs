@@ -3,6 +3,9 @@ using _01WebApi.Interfaces;
 
 namespace _01WebApi.Services;
 
+/// <summary>
+/// @deprecated use MailService instead
+/// </summary>
 public class CloudMailService : IMailService
 {
     private readonly string _from = "mail@cloudmailservice.com";

@@ -3,6 +3,9 @@ using _01WebApi.Interfaces;
 
 namespace _01WebApi.Services;
 
+/// <summary>
+/// @deprecated use MailService instead
+/// </summary>
 public class LocalMailService : IMailService
 {
     private readonly string _from = "mail@localmailservice.com";
