@@ -24,11 +24,13 @@ namespace _01WebApi.Controllers
 
         private ILogger<EmployeeController> _logger;
         private readonly EmployeeDataStore _employeeDataStore;
+        private readonly IMailService _mailService;
 
-        public EmployeeController(ILogger<EmployeeController> logger, EmployeeDataStore employeeDataStore)
+        public EmployeeController(ILogger<EmployeeController> logger, EmployeeDataStore employeeDataStore, IMailService mailService)
         {
             _logger = logger;
             _employeeDataStore = employeeDataStore;
+            _mailService = mailService;
         }
 
         [HttpGet]
@@ -182,6 +184,10 @@ namespace _01WebApi.Controllers
             }
 
             _employeeDataStore.Employees.Remove(employeeFromStore);
+
+            string message = _mailService.SendMail();
+            Console.WriteLine(message);
+
 
             return NoContent();
         }

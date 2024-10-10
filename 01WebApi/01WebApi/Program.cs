@@ -17,6 +17,17 @@ builder.Services.AddControllers(options =>
 builder.Services.AddSingleton<IGreetingService, GreetingService>();
 builder.Services.AddSingleton<EmployeeDataStore>();
 
+//* the LocalMailService will be used in this case as it si registered last
+// builder.Services.AddTransient<IMailService, CloudMailService>();
+// builder.Services.AddTransient<IMailService, LocalMailService>();
+
+//* Another way of registering services based on debug and release config COMPILER DIRECTIVES
+#if DEBUG
+builder.Services.AddTransient<IMailService, LocalMailService>();
+#else
+builder.Services.AddTransient<IMailService, CloudMailService>();
+#endif
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer(); //* Adds Swagger
 builder.Services.AddSwaggerGen(); //* Adds Swagger
