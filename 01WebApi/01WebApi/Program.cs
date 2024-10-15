@@ -34,6 +34,9 @@ builder.Services.AddTransient<IMailService, MailService>();
 builder.Services.AddEndpointsApiExplorer(); //* Adds Swagger
 builder.Services.AddSwaggerGen(); //* Adds Swagger
 
+// Add breakpoint below to check the providers
+// var config = builder.Configuration["MailService:from"];
+
 var app = builder.Build(); //* Builds the App
 
 // Configure the HTTP request pipeline. -- important
