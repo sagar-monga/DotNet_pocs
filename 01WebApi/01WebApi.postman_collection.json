@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "c1086b2e-822e-4d65-8800-4d806ca7142a",
+		"name": "01WebApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21919703"
+	},
+	"item": [
+		{
+			"name": "GET Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://localhost:7033/api/employee"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Employee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://localhost:7033/api/employee/1"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Add employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"salary\": 982000,\r\n  \"department\": \"IT\",\r\n  \"position\": \"Manager\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:7033/api/employee",
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7033/api/employee' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"salary\": 0,\r\n  \"department\": \"string\",\r\n  \"position\": \"string\",\r\n  \"lastWorkingDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Add employee (can't deserialize)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"salary\": 0,\r\n  \"department\": \"string\",\r\n  \"position\": \"string\",\r\n  \"lastWorkingDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:7033/api/employee",
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7033/api/employee' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"salary\": 0,\r\n  \"department\": \"string\",\r\n  \"position\": \"string\",\r\n  \"lastWorkingDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update employee",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"salary\": 982000,\r\n  \"department\": \"IT\",\r\n  \"position\": \"Manager\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:7033/api/employee/101",
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7033/api/employee' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"salary\": 0,\r\n  \"department\": \"string\",\r\n  \"position\": \"string\",\r\n  \"lastWorkingDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update invalid employee",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"salary\": 982000,\r\n  \"department\": \"IT\",\r\n  \"position\": \"Manager\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:7033/api/employee/101",
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7033/api/employee' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"salary\": 0,\r\n  \"department\": \"string\",\r\n  \"position\": \"string\",\r\n  \"lastWorkingDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update employee no body",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:7033/api/employee/101",
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7033/api/employee' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"salary\": 0,\r\n  \"department\": \"string\",\r\n  \"position\": \"string\",\r\n  \"lastWorkingDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Update employee not all fields",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"salary\": 982000,\r\n  \"department\": \"IT\",\r\n  \"position\": \"Manager\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://localhost:7033/api/employee/101",
+				"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://localhost:7033/api/employee' \\\r\n  -H 'accept: */*' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"firstName\": \"string\",\r\n  \"lastName\": \"string\",\r\n  \"salary\": 0,\r\n  \"department\": \"string\",\r\n  \"position\": \"string\",\r\n  \"lastWorkingDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"hireDate\": \"2024-08-19T12:01:36.145Z\",\r\n  \"dateOfBirth\": \"2024-08-19T12:01:36.145Z\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Employee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://localhost:7033/api/employee/1"
+			},
+			"response": []
+		}
+	]
+}
