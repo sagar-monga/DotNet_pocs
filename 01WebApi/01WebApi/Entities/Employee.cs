@@ -36,10 +36,10 @@ public class Employee
     [Required]
     public DateTime DateOfBirth { get; set; }
 
-    public Employee(string firstname, string lastname, int salary, string department, string position, DateTime hireDate, DateTime dateOfBirth)
+    public Employee(string firstName, string lastName, string department, string position, DateTime hireDate, DateTime dateOfBirth)
     {
-        FirstName = firstname;
-        LastName = lastname;
+        FirstName = firstName;
+        LastName = lastName;
         Department = department;
         Position = position;
         HireDate = hireDate;
