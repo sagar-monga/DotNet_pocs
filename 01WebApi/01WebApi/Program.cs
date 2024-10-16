@@ -39,7 +39,7 @@ builder.Services.AddSwaggerGen(); //* Adds Swagger
 // Add breakpoint below to check the providers
 // var config = builder.Configuration["MailService:from"];
 
-builder.Services.AddDbContext<EmployeeContext>(options => options.UseSqlServer("Server=localhost;Database=master;Trusted_Connection=True;"));
+builder.Services.AddDbContext<EmployeeContext>(options => options.UseSqlServer("Server=localhost;Database=dev-01WebApi;Trusted_Connection=True;"));
 
 var app = builder.Build(); //* Builds the App
 
