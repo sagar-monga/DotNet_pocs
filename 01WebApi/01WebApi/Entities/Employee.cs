@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace _01WebApi.Entities;
 
@@ -36,14 +37,14 @@ public class Employee
     [Required]
     public DateTime DateOfBirth { get; set; }
 
-    public Employee(string firstName, string lastName, string department, string position, DateTime hireDate, DateTime dateOfBirth)
+    public Employee(string firstName, string lastName, int salary, string department, string position, DateTime hireDate, DateTime dateOfBirth)
     {
         FirstName = firstName;
         LastName = lastName;
+        Salary = salary;
         Department = department;
         Position = position;
         HireDate = hireDate;
         DateOfBirth = dateOfBirth;
     }
-
 }
