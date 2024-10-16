@@ -28,7 +28,7 @@ public class Employee
     [MaxLength(100)]
     public string Position { get; set; }
 
-    public DateTime? LastWorkingDate { get; set; }
+    // public DateTime? LastWorkingDate { get; set; }
 
     [Required]
     public DateTime HireDate { get; set; }
@@ -45,7 +45,6 @@ public class Employee
         Position = position;
         HireDate = hireDate;
         DateOfBirth = dateOfBirth;
-
     }
 
 }
