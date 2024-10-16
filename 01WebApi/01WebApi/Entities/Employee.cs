@@ -40,7 +40,6 @@ public class Employee
     {
         FirstName = firstname;
         LastName = lastname;
-        Salary = salary;
         Department = department;
         Position = position;
         HireDate = hireDate;
