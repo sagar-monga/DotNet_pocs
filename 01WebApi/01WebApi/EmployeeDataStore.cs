@@ -3,6 +3,7 @@
 namespace _01WebApi;
 
 // in memory data store, will be swapped out when using Entity Framework to connect a data source
+// [Obsolete("In memory store, not used anymore")]
 public class EmployeeDataStore
 {
     public List<EmployeeDto> Employees { get; set; }
