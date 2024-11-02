@@ -8,7 +8,7 @@ namespace _01WebApi.Controllers
     public class ErrorHandler : ControllerBase
     {
         [Route("/error")]
-        public IActionResult HandleError()
+        protected IActionResult HandleError()
         {
             var problemDetails = new ProblemDetails
             {
