@@ -1,4 +1,4 @@
-﻿
+﻿using _01WebApi.Entities;
 using _01WebApi.Interfaces;
 using _01WebApi.Models;
 using _01WebApi.Models.RequestModels;
@@ -23,50 +23,97 @@ namespace _01WebApi.Controllers
     {
 
         private readonly ILogger<EmployeeController> _logger;
-        private readonly EmployeeDataStore _employeeDataStore;
+        // private readonly EmployeeDataStore _employeeDataStore;
         private readonly IMailService _mailService;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public EmployeeController(ILogger<EmployeeController> logger, EmployeeDataStore employeeDataStore, IMailService mailService)
+        public EmployeeController(ILogger<EmployeeController> logger, IMailService mailService, IEmployeeRepository employeeRepository)
         {
             _logger = logger;
-            _employeeDataStore = employeeDataStore;
+            // _employeeDataStore = employeeDataStore;
             _mailService = mailService;
+            _employeeRepository = employeeRepository;
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<ActionResult<List<EmployeeDto>>> GetAll()
         {
             // * Can be done but cumbersome
             // var temp = new JsonResult(_employeeDataStore.Employees);
             // temp.StatusCode = 200;
 
-            return new JsonResult(_employeeDataStore.Employees);
+            // return new JsonResult(_employeeDataStore.Employees);
+            var employeesEntities = await _employeeRepository.ReadAllAsync();
+            var results = new List<EmployeeDto>();
+
+            // Mapping is cumbersome, can lead to errors. Need to solve this problem.
+            foreach (var employee in employeesEntities)
+            {
+                results.Add(new EmployeeDto
+                {
+                    Id = employee.Id,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    Salary = employee.Salary,
+                    Department = employee.Department,
+                    Position = employee.Position,
+                    HireDate = employee.HireDate,
+                    DateOfBirth = employee.DateOfBirth,
+                });
+            }
+            return Ok(results);
         }
 
         [HttpGet("{id:int}", Name = "GetEmployee")] // Make sure no spaces
         // [HttpGet("{id}")] // Alternate notation, infers type from function parameter
-        public ActionResult<EmployeeDto> Get(int id)
+        public async Task<ActionResult<EmployeeDto>> Get(int id)
         {
             //* To simulate global exception handler
             // throw new Exception("Sample Exception");
             try
             {
                 // throw new Exception("Sample Exception");
-                var employee = _employeeDataStore.Employees.FirstOrDefault(e => e.Id == id);
+                // var employee = _employeeDataStore.Employees.FirstOrDefault(e => e.Id == id);
+                //
+                // var greetingService = HttpContext.RequestServices.GetService<IGreetingService>();
+                //
+                // if (employee == null)
+                // {
+                //     greetingService?.Greet();
+                //     _logger.LogWarning($"Employee with id {id} not found");
+                //     return NotFound();
+                // }
+                //
+                // return Ok(employee);
 
+                // return new JsonResult(_employeeDataStore.Employees.FirstOrDefault(e => e.Id == id)); // returns single entity, if not found then null
+                // return new JsonResult(_employeeDataStore.Employees.Where(e => e.Id == id)); // returns array, if no result then []
+
+                var exists = await _employeeRepository.ExistsAsync(id);
                 var greetingService = HttpContext.RequestServices.GetService<IGreetingService>();
 
-                if (employee == null)
+                if (!exists)
                 {
                     greetingService?.Greet();
                     _logger.LogWarning($"Employee with id {id} not found");
                     return NotFound();
                 }
 
-                return Ok(employee);
+                var employee = await _employeeRepository.ReadByIdAsync(id);
 
-                // return new JsonResult(_employeeDataStore.Employees.FirstOrDefault(e => e.Id == id)); // returns single entity, if not found then null
-                // return new JsonResult(_employeeDataStore.Employees.Where(e => e.Id == id)); // returns array, if no result then []
+                var result = new EmployeeDto
+                {
+                    Id = employee.Id,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    DateOfBirth = employee.DateOfBirth,
+                    Department = employee.Department,
+                    HireDate = employee.HireDate,
+                    Position = employee.Position,
+                    Salary = employee.Salary
+                };
+
+                return Ok(result);
             }
             catch (Exception ex)
             {
