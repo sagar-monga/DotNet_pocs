@@ -14,17 +14,17 @@ public class EmployeeRepository : IEmployeeRepository
         _context = employeeContext;
     }
 
-    public async Task<Employee> ReadById(int id)
+    public async Task<Employee> ReadByIdAsync(int id)
     {
         return await _context.Employees.Where(e => e.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<Employee>> ReadAll()
+    public async Task<IEnumerable<Employee>> ReadAllAsync()
     {
         return await _context.Employees.ToListAsync();
     }
 
-    public async Task<bool> Exists(int id)
+    public async Task<bool> ExistsAsync(int id)
     {
         return await _context.Employees.AnyAsync(e => e.Id == id);
     }
