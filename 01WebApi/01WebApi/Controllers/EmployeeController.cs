@@ -2,7 +2,7 @@
 using _01WebApi.Interfaces;
 using _01WebApi.Models;
 using _01WebApi.Models.RequestModels;
-using _01WebApi.Services;
+
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +10,7 @@ namespace _01WebApi.Controllers
 {
 
     [ApiController] //* Attribute for improving dev experience like automatic returning 400 on bad request requiring routing etc
-    // [Route("")] This configures the api to work at the base route. eg is server works at localhost:7033, this get below will be 
+    // [Route("")] This configures the api to work at the base route. e.g. is server works at localhost:7033, this get below will be 
     // present at localhost:7033/
 
     // [Route("[controller]")]
@@ -22,7 +22,7 @@ namespace _01WebApi.Controllers
     public class EmployeeController : ControllerBase //* ControllerBase contains basic functionality the Controller needs
     {
 
-        private ILogger<EmployeeController> _logger;
+        private readonly ILogger<EmployeeController> _logger;
         private readonly EmployeeDataStore _employeeDataStore;
         private readonly IMailService _mailService;
 
@@ -47,7 +47,7 @@ namespace _01WebApi.Controllers
         // [HttpGet("{id}")] // Alternate notation, infers type from function parameter
         public ActionResult<EmployeeDto> Get(int id)
         {
-            //* To simulatre global exception handler
+            //* To simulate global exception handler
             // throw new Exception("Sample Exception");
             try
             {
