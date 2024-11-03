@@ -36,8 +36,11 @@ public class Employee
 
     [Required]
     public DateTime DateOfBirth { get; set; }
+    
+    public DateTime? LastWorkingDate { get; set; }
 
-    public Employee(string firstName, string lastName, int salary, string department, string position, DateTime hireDate, DateTime dateOfBirth)
+    public Employee(string firstName, string lastName, int salary, string department, string position,
+        DateTime hireDate, DateTime dateOfBirth, DateTime? lastWorkingDate = null)
     {
         FirstName = firstName;
         LastName = lastName;
@@ -46,5 +49,9 @@ public class Employee
         Position = position;
         HireDate = hireDate;
         DateOfBirth = dateOfBirth;
+        if (lastWorkingDate.HasValue)
+        {
+            LastWorkingDate = lastWorkingDate;
+        }
     }
 }
