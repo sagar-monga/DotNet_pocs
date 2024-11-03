@@ -18,6 +18,7 @@ builder.Services.AddControllers(options =>
 
 builder.Services.AddSingleton<IGreetingService, GreetingService>();
 builder.Services.AddSingleton<EmployeeDataStore>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 //* the LocalMailService will be used in this case as it si registered last
 // builder.Services.AddTransient<IMailService, CloudMailService>();
