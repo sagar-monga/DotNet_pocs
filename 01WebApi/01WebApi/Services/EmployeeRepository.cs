@@ -14,7 +14,7 @@ public class EmployeeRepository : IEmployeeRepository
         _context = employeeContext;
     }
 
-    public async Task<Employee> ReadByIdAsync(int id)
+    public async Task<Employee?> ReadByIdAsync(int id)
     {
         return await _context.Employees.Where(e => e.Id == id).FirstOrDefaultAsync();
     }
