@@ -1,11 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net8.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net8.0": []
   },
   "packageFolders": {
     "C:\\Users\\sagar.monga\\.nuget\\packages\\": {},
@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BitbucketProjects\\service\\pocs\\BE_pocs\\00LearningC#\\LearningLINQ\\LearningLINQ\\LearningLINQ.csproj",
+      "projectUniqueName": "D:\\BitbucketProjects\\service\\pocs\\BE_pocs\\00LearningC#\\LearningLINQ\\LearningLINQ.csproj",
       "projectName": "LearningLINQ",
-      "projectPath": "D:\\BitbucketProjects\\service\\pocs\\BE_pocs\\00LearningC#\\LearningLINQ\\LearningLINQ\\LearningLINQ.csproj",
+      "projectPath": "D:\\BitbucketProjects\\service\\pocs\\BE_pocs\\00LearningC#\\LearningLINQ\\LearningLINQ.csproj",
       "packagesPath": "C:\\Users\\sagar.monga\\.nuget\\packages\\",
-      "outputPath": "D:\\BitbucketProjects\\service\\pocs\\BE_pocs\\00LearningC#\\LearningLINQ\\LearningLINQ\\obj\\",
+      "outputPath": "D:\\BitbucketProjects\\service\\pocs\\BE_pocs\\00LearningC#\\LearningLINQ\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -28,18 +28,17 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net8.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {},
-        "https://gitlab.com/api/v4/projects/45810272/packages/nuget/index.json": {},
         "https://grapeseed-nuget-domain-763191775128.d.codeartifact.ap-southeast-1.amazonaws.com/nuget/grapeseed-nuget-repo/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -55,8 +54,8 @@
       }
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "imports": [
           "net461",
           "net462",
@@ -73,7 +72,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

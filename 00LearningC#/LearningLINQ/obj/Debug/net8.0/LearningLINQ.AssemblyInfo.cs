@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LearningLINQ")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d78fd4bb94ce02603dddfaeb00673bf5be97d05")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a787d43d6508b053c23a600ee6cf0cfe441ba719")]
 [assembly: System.Reflection.AssemblyProductAttribute("LearningLINQ")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LearningLINQ")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
