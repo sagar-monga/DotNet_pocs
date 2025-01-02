@@ -130,36 +130,85 @@ IEnumerable<int> existenceCollection = [1, 2, 3, 4, 5];
 
 #region Sequence Manipulation
 
-// Append
+IEnumerable<int> sequence = [1, 2, 3, 4, 5];
 
+// Append
+// sequence.Append(2).Dump();
+// sequence.Dump();
 
 // Prepend
+// sequence.Prepend(2).Dump();
+// sequence.Dump();
 
 
 #endregion
 
-
 #region Aggregation
 
-// Count
+IEnumerable<int> aggregation = [1, 2, 3, 4, 5];
+var persons = new List<dynamic>
+{
+    new { Name = "Alice", Age = 30 },
+    new { Name = "Bob", Age = 45 },
+    new { Name = "Charlie", Age = 25 }
+};
 
-// TryGetNonEnumeratedCount
+
+// Count - better with IEnumerable
+
+// aggregation.Count().Dump();
+
+// TryGetNonEnumeratedCount -- better with ICollection
+
+// aggregation.TryGetNonEnumeratedCount(out int count);
+// count.Dump();
 
 // Max + predicate
 
+// aggregation.Max().Dump();
+
+// var maxAge = persons.Max(x => x.Age);
+// System.Console.WriteLine(maxAge);
+
 // MaxBy + predicate
+
+// var oldest = persons.MaxBy(x => x.Age);
+// System.Console.WriteLine(oldest);
 
 // Min
 
+// aggregation.Min().Dump();
+
+// var minAge = persons.Min(x => x.Age);
+// System.Console.WriteLine(minAge);
+
 // MinBy
+
+// var youngest = persons.MinBy(x => x.Age);
+// System.Console.WriteLine(youngest);
 
 // Sum
 
+// aggregation.Sum().Dump();
+// persons.Sum(x => x.Age).Dump();
+
 // Average
+
+// aggregation.Average().Dump();
+// persons.Average(x => x.Age).Dump();
 
 // Aggregate + 3 overloads
 
-// LongCount
+// aggregation.Aggregate((acc, y) => acc + y).Dump(); // same as .Sum
+// aggregation.Aggregate(0, (acc, y) => acc + y).Dump(); // same as above
+// aggregation.Aggregate(10, (acc, y) => acc + y).Dump();
+// aggregation.Aggregate(10, (acc, y) => acc + y, agg => "Total: " + agg).Dump();
+
+// persons.Aggregate(0, (acc , y) => acc + y.Age).Dump();
+
+// LongCount - returns count as long
+
+// aggregation.LongCount().ToString().Dump();
 
 #endregion
 
