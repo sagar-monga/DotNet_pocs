@@ -68,7 +68,7 @@ IEnumerable<dynamic> people = [
     new { Name = "Alice", Hobbies = new List<string> { "Cooking", "Reading" } }
 ];
 
-// SELECT + with index
+// SELECT + with index  -- basically .map function
 
 // projectionCollection.Select(x => x.ToString()).Dump();
 // projectionCollection.Select(x => x * 2).Dump();
@@ -194,7 +194,7 @@ var persons = new List<dynamic>
 // aggregation.Average().Dump();
 // persons.Average(x => x.Age).Dump();
 
-// Aggregate + 3 overloads
+// Aggregate + 3 overloads -- basically the .reduce function
 
 // aggregation.Aggregate((acc, y) => acc + y).Dump(); // same as .Sum
 // aggregation.Aggregate(0, (acc, y) => acc + y).Dump(); // same as above
