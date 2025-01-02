@@ -150,7 +150,7 @@ var persons = new List<dynamic>
 {
     new { Name = "Alice", Age = 30 },
     new { Name = "Bob", Age = 45 },
-    new { Name = "Charlie", Age = 25 }
+    new { Name = "Charlie", Age = 30 }
 };
 
 
@@ -268,13 +268,26 @@ IEnumerable<int> empty = [];
 
 #region Conversion
 
+IEnumerable<int> conversion = [1, 2, 3, 4, 5];
+
 // ToArray
+
+// conversion.ToArray().Dump();
 
 // ToList
 
+// conversion.ToList().Dump();
+
 // ToDictionary
 
+// persons.ToDictionary(p => p.Name).Dump();
+// persons.ToDictionary(p => p.Name, p => p.Age).Dump();
+
 // ToHashSet
+
+// persons.ToHashSet().Dump();
+
+//! For a custom object, need to implement GetHashCode and Equals in 
 
 // ToLookup
 
@@ -284,13 +297,24 @@ IEnumerable<int> empty = [];
 
 // AsEnumerable
 
+// persons.AsEnumerable().Dump();
+
 // AsQueryable
+
+// persons.AsQueryable().Dump();
 
 // Range
 
-// Repeat
+// Enumerable.Range(0, 5).Dump();
 
-// Empty
+// Repeat (what, count)
+
+// Enumerable.Repeat(2, 5).Dump();
+
+// Empty - useful when you need to return an empty sequence from a LINQ query or a method without worrying about null values or additional allocations
+
+// Enumerable.Empty<int>().Dump();
+
 #endregion
 
 #region Set Operations
