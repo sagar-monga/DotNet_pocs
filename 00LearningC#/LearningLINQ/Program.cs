@@ -114,11 +114,17 @@ IEnumerable<List<int>> numbers = [[1,2,3], [4,5,6]];
 /// Example
 /// 
 
+IEnumerable<int> existenceCollection = [1, 2, 3, 4, 5];
+
 // Any - immediate execution
+// existenceCollection.Any(x => x < -1).Dump();
+// existenceCollection.Any(x => x > 3).Dump();
 
 // All - immediate exec
+// existenceCollection.All(x => x > -1).Dump();
 
 // Contains - immediate exec
+// existenceCollection.Contains(5).Dump();
 
 #endregion
 
