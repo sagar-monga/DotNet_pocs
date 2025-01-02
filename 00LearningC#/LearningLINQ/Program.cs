@@ -214,23 +214,55 @@ var persons = new List<dynamic>
 
 #region Element Operators
 
+IEnumerable<int> operators = [1, 2, 3, 4, 5];
+IEnumerable<int> single = [2];
+IEnumerable<int> empty = [];
+
 // First
 
-// FirstOrDefault -- if collection is empty, exception is thrown
+// operators.First().Dump();
+// empty.First().Dump(); // throws exception
 
-// Single
+// FirstOrDefault -- if collection is empty, exception is thrown in first.
+
+// operators.FirstOrDefault().Dump();
+// empty.FirstOrDefault().Dump();
+
+// Single - chekcs if sequence is single or not
+
+// single.Single().Dump();
+// empty.Single().Dump(); // throws exception
 
 //SingleOrDefault
 
+// single.SingleOrDefault().Dump();
+// empty.SingleOrDefault().Dump();
+
 // Last
+
+// operators.Last().Dump();
+// empty.Last().Dump(); // throws exception
 
 // LastOrDefault
 
+// operators.LastOrDefault().Dump();
+// empty.LastOrDefault().Dump();
+
 // ElementAt
+
+// operators.ElementAt(0).Dump();
+// operators.ElementAt(-1).Dump(); // throws index out of bounds
+// operators.ElementAt(5).Dump(); // throws index out of bounds
 
 // ElementAtOrDefault
 
+// operators.ElementAtOrDefault(0).Dump();
+// operators.ElementAtOrDefault(-1).Dump();
+// operators.ElementAtOrDefault(5).Dump();
+
 // DefaultIfEmpty
+
+// empty.DefaultIfEmpty().Dump();
 
 #endregion
 
