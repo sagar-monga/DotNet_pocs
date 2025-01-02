@@ -1,7 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using System.Security.Principal;
-
-IEnumerable<int> collection = [1, 2, 3, 4, 5];
+﻿IEnumerable<int> collection = [1, 2, 3, 4, 5];
 
 #region Filter
 
@@ -88,7 +85,7 @@ IEnumerable<dynamic> people = [
 
 // people.SelectMany((x, i) =>  $"{i}: (IEnumerable<string>){x.Hobbies.ToString()}").Dump();
 
-IEnumerable<List<int>> numbers = [[1,2,3], [4,5,6]];
+IEnumerable<List<int>> numbers = [[1, 2, 3], [4, 5, 6]];
 
 // numbers.SelectMany(x => x).Dump(); //! FLATTEN
 
@@ -319,48 +316,121 @@ IEnumerable<int> conversion = [1, 2, 3, 4, 5];
 
 #region Set Operations
 
+IEnumerable<int> set = [1, 2, 3, 4, 5, 3, 4, 1];
+var people2 = new List<dynamic>
+        {
+            new { Name = "Charlie", Age = 35 },
+            new { Name = "Alice", Age = 28 }
+        };
+
 // Distinct
+
+// set.Distinct().Dump();
 
 // DistinctBy
 
+// persons.DistinctBy(p => p.Age).Dump();
+
 // Union
+
+// set.Union([4, 5, 6]).Dump();
 
 // Intersect
 
+// set.Intersect([0]).Dump();
+// set.Intersect([4, 5, 6, 0]).Dump();
+
 // Except
+
+// set.Except([4,5,6]).Dump();
 
 // ExceptBy
 
+// persons.ExceptBy([45], p => p.Age).Dump();
+
 // IntersectBy
+
+// persons.IntersectBy([30, 29], p => p.Age).Dump();
 
 // UnionBy
 
+// persons.UnionBy(people2, p => p.Name).Dump();
+// persons.UnionBy(people2, p => p.Age).Dump();
+
 // SequenceEqual (Immmediate Execution)
+
+// set.SequenceEqual([1, 2, 3, 4, 5]).Dump();
+// set.SequenceEqual([1, 2, 3, 4, 5, 3, 4, 1]).Dump();
+// set.SequenceEqual([1, 1, 2, 3, 4, 5, 3, 4]).Dump();
+
 #endregion
 
 #region Joining & Grouping
 
-// Zip
+IEnumerable<int> joining = [1, 2, 3, 4, 5];
+
+// Zip - combines both sequences taking one element at a time from each sequence. Takes count for shortest seq
+
+// joining.Zip([7,8,9,10], ["a", "b", "v"]).Dump();
+
+var customers = new List<dynamic>
+        {
+            new { Id = 1, Name = "Alice", Age = 45},
+            new { Id = 3, Name = "Charlie", Age = 30},
+            new { Id = 4, Name = "Bob", Age = 30},
+        };
+
+var orders = new List<dynamic>
+        {
+            new { PersonId = 1, Product = "Laptop" },
+            new { PersonId = 2, Product = "Smartphone" },
+            new { PersonId = 1, Product = "Tablet" }
+        };
 
 // Join
 
+// customers.Join(orders, c => c.Id, o => o.PersonId, (p, o) => new {Name = p.Name, Product = o.Product}).Dump();
+
 // GroupJoin
+
+// customers.GroupJoin(orders, c => c.Id, o => o.PersonId, (p, o) => new {Name = p.Name, Product = o.Select(o => o.Product).DefaultIfEmpty("No Orders")}).Dump();
 
 // Concat
 
+// joining.Concat([2,34]).Dump();
+
 // GroupBy
+
+// customers.GroupBy(c => c.Age).Dump();
 
 // Order
 
+// joining.Order().Dump();
+
 // OrderDescending
+
+// joining.OrderDescending().Dump();
+
+// OrderBy
+
+// customers.OrderBy(c => c.Age).Dump();
 
 // OrderByDescending
 
-// ThenBy
+// customers.OrderByDescending(c => c.Age).Dump();
+
+// ThenBy -- apply another sort criteria
+
+// customers.OrderBy(p => p.Age).ThenBy(p => p.Id).Dump();
 
 // ThenByDescending
 
+// customers.OrderBy(p => p.Age).ThenByDescending(p => p.Id).Dump();
+
 // Reverse
+
+// joining.Reverse().Dump();
+
 #endregion
 
 #region PLINQ (Parallel LINQ)
